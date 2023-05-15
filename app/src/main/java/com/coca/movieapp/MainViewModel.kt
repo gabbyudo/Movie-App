@@ -13,10 +13,10 @@ class MainViewModel: ViewModel() {
 
 
     fun getMovies(){
-        val firstMovie = Movie( 1, "one", getResults(), R.drawable.file)
-        val secondMovie = Movie( 2, "two", getResults(), R.drawable.file)
-        val thirdMovie = Movie(3, "third", getResults(), R.drawable.file)
-        val fourthMovie = Movie(4, "fourth", getResults(), R.drawable.file)
+        val firstMovie = Movie( 1, "one", getResults())
+        val secondMovie = Movie( 2, "two", getResults())
+        val thirdMovie = Movie(3, "third", getResults())
+        val fourthMovie = Movie(4, "fourth", getResults())
 
         val myMovies = listOf<Movie>(firstMovie,secondMovie,thirdMovie,fourthMovie)
         _myMovies.value = myMovies

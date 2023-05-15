@@ -5,8 +5,7 @@ import android.media.Image
 data class Movie (
     val id : Int,
     val name : String,
-    val results : List<Results>,
-    val image : Int
+    val results : List<Results>
 
 )
 data class Results (
