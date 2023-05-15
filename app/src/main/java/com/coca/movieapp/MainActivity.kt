@@ -1,5 +1,6 @@
 package com.coca.movieapp
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.Observer
@@ -21,6 +22,9 @@ class MainActivity : AppCompatActivity() {
         viewModel.myMovie.observe(this, Observer {
             if(it != null){
                 adapter = MovieAdapter(MovieListener {
+                    val intent = Intent(this, DetailActivity::class.java)
+                    intent.putExtra(DetailActivity.MOVIE, it)
+                    startActivity(intent)
 
                 })
                 binding.MovieRV.adapter = adapter

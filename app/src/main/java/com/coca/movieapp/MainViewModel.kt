@@ -13,8 +13,8 @@ class MainViewModel: ViewModel() {
 
 
     fun getMovies(){
-        val firstMovie = Movie( 1, "one", getResults())
-        val secondMovie = Movie( 2, "two", getResults())
+        val firstMovie = Movie( 1, "first", getResults())
+        val secondMovie = Movie( 2, "second", getResults())
         val thirdMovie = Movie(3, "third", getResults())
         val fourthMovie = Movie(4, "fourth", getResults())
 
