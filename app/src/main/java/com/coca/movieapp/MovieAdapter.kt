@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.coca.movieapp.databinding.ListItemBinding
 
-class MovieAdapter(val clickListener: RecipeListener)  : ListAdapter<Movie, MovieViewHolder>(NoteDiffCallback()) {
+class MovieAdapter(val clickListener: MovieListener)  : ListAdapter<Movie, MovieViewHolder>(NoteDiffCallback()) {
 
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
         val item = getItem(position)
@@ -19,7 +19,7 @@ class MovieAdapter(val clickListener: RecipeListener)  : ListAdapter<Movie, Movi
 }
 class MovieViewHolder private constructor(val binding: ListItemBinding):
     RecyclerView.ViewHolder(binding.root) {
-    fun bind(item: Movie, clickListener: RecipeListener) {
+    fun bind(item: Movie, clickListener:MovieListener) {
         binding.movieName.text = item.name
 
         binding.movieName.setOnClickListener {
@@ -43,6 +43,6 @@ class NoteDiffCallback :
         return oldItem == newItem
     }
 }
-open class RecipeListener(val clickListener: (recipe: Movie) -> Unit) {
+open class MovieListener(val clickListener: (recipe: Movie) -> Unit) {
     fun onClick(recipe: Movie) = clickListener(recipe)
 }

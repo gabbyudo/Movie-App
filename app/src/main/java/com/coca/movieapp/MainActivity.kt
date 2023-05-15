@@ -2,6 +2,7 @@ package com.coca.movieapp
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.coca.movieapp.databinding.ActivityMainBinding
 
@@ -17,6 +18,12 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
+
+        viewModel.myMovie.observe(this, Observer {
+            if(it != null){
+                adapter = MovieAdapter()
+            }
+        })
 
     }
 }
