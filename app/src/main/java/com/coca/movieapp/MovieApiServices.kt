@@ -21,8 +21,8 @@ private val retrofit = Retrofit.Builder()
     .build()
 
 interface RecipeApiService {
-    @GET("")
-    suspend fun getRecipe():
+    //@GET("https://api.themoviedb.org/lists")
+    suspend fun getMovie():
             List<Movie>
 }
 object RecipeApi {

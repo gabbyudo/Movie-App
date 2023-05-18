@@ -7,6 +7,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.coca.movieapp.databinding.ActivityMainBinding
+import com.squareup.picasso.Picasso
 
 class MainActivity : AppCompatActivity() {
     private lateinit var viewModel: MainViewModel
@@ -16,6 +17,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         val binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        supportActionBar?.hide()
+
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
 
         viewModel.myMovie.observe(this, Observer {
@@ -24,7 +27,8 @@ class MainActivity : AppCompatActivity() {
                     val intent = Intent(this, DetailActivity::class.java)
                     intent.putExtra(DetailActivity.MOVIE, it)
                     startActivity(intent)
-                })
+
+                    })
                 binding.MovieRV.adapter = adapter
                 adapter.submitList(it)
             }

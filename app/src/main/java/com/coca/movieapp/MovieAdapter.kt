@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.coca.movieapp.databinding.ListItemBinding
+import com.squareup.picasso.Picasso
 
 class MovieAdapter(val clickListener: MovieListener)  : ListAdapter<Movie, MovieViewHolder>(NoteDiffCallback()) {
 
@@ -21,6 +22,12 @@ class MovieViewHolder private constructor(val binding: ListItemBinding):
     RecyclerView.ViewHolder(binding.root) {
     fun bind(item: Movie, clickListener:MovieListener) {
         binding.movieName.text = item.name
+        val image = binding.image
+
+      /*  Picasso.with(image.context)
+            .load("")
+            .into(image)
+*/
 
         binding.movieName.setOnClickListener {
             clickListener.onClick(item)
