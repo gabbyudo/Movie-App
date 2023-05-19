@@ -23,11 +23,9 @@ class MovieViewHolder private constructor(val binding: ListItemBinding):
     fun bind(item: Movie, clickListener:MovieListener) {
         binding.movieName.text = item.name
         val image = binding.image
-
-       Picasso.with(image.context)
+        Picasso.with(image.context)
             .load("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXWI2scXOnCZyu63frAvg2P_V7cvaHYXKKTKYg0H4kNQ&s")
             .into(image)
-
 
         binding.movieName.setOnClickListener {
             clickListener.onClick(item)
