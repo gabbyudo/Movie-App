@@ -18,5 +18,5 @@ class MainViewModel : ViewModel() {
             _myMovies.value = repository.getMovies()
         }
     }
-    
+
 }
