@@ -4,30 +4,39 @@ package com.coca.movieapp
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
+import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
+import retrofit2.http.Headers
 
-private const val BASE_URL = ""
+private const val BASE_URL = "https://api.themoviedb.org/"
 
 private val moshi = Moshi.Builder()
     .add(KotlinJsonAdapterFactory())
     .build()
 
+    val interceptor : HttpLoggingInterceptor = HttpLoggingInterceptor().apply {
+       level = HttpLoggingInterceptor.Level.BODY
+}
+    val client : OkHttpClient = OkHttpClient.Builder().apply {
+        addInterceptor(interceptor)
+        addInterceptor(AuthInterceptor())
+    }.build()
+
 private val retrofit = Retrofit.Builder()
     .addConverterFactory(MoshiConverterFactory.create(moshi))
     .addCallAdapterFactory(CoroutineCallAdapterFactory())
     .baseUrl(BASE_URL)
+    .client(client)
     .build()
 
-interface RecipeApiService {
-    //@GET("https://api.themoviedb.org/lists")
-    suspend fun getMovie():
-            List<Movie>
+interface MovieApiService {
+    @GET("3/movie/popular")
+    suspend fun getMovies():  MovieResponse
 }
-object RecipeApi {
-    val retrofitService : RecipeApiService =
-        retrofit.create(RecipeApiService::class.java)
-
+object MovieApi {
+    val retrofitService : MovieApiService =
+        retrofit.create(MovieApiService::class.java)
 }
-
