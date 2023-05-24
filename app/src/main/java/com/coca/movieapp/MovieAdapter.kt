@@ -1,5 +1,6 @@
 package com.coca.movieapp
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -23,14 +24,22 @@ class MovieViewHolder private constructor(val binding: ListItemBinding):
     fun bind(item: Movie, clickListener:MovieListener) {
         binding.movieName.text = item.title
         val image = binding.image
+
         Picasso.with(image.context)
-            .load("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXWI2scXOnCZyu63frAvg2P_V7cvaHYXKKTKYg0H4kNQ&s")
+            .load(buildCompletePosterUrl(item.poster_path.orEmpty()))
             .into(image)
 
         binding.movieName.setOnClickListener {
             clickListener.onClick(item)
         }
     }
+
+    private fun buildCompletePosterUrl(filePath: String): String? {
+        val baseUrl = "https://www.themoviedb.org/t/p/"
+        val posterSize = "w185/"
+        return String.format("%s%s%s", baseUrl, posterSize, filePath)
+    }
+
     companion object {
         fun from(parent: ViewGroup): MovieViewHolder {
             val layoutInflater = LayoutInflater.from(parent.context)
