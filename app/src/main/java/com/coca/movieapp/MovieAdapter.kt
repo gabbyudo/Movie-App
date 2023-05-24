@@ -1,6 +1,5 @@
 package com.coca.movieapp
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -37,7 +36,7 @@ class MovieViewHolder private constructor(val binding: ListItemBinding):
     private fun buildCompletePosterUrl(filePath: String): String? {
         val baseUrl = "https://www.themoviedb.org/t/p/"
         val posterSize = "w185/"
-        return String.format("%s%s%s", baseUrl, posterSize, filePath)
+        return "$baseUrl$posterSize$filePath"
     }
 
     companion object {
