@@ -8,6 +8,9 @@ androidExtensions {
     experimental = true
     features = ["parcelize"]
 }
+Properties properties = new Properties()
+properties.load(project.rootProject.file("local.properties").newDataInputStream())
+
 
 android {
     namespace 'com.coca.movieapp'
@@ -19,10 +22,8 @@ android {
         targetSdk 33
         versionCode 1
         versionName "1.0"
-        // Please ensure you have a valid API KEY for themoviedb.org↵
-       // to use this app
-        // A valid key will need to be entered
-       // buildConfigField("String", "API_KEY", API_KEY)
+
+        buildConfigField "String", 'API_KEY', properties.getProperty("API_KEY","")
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }

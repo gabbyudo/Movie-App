@@ -29,7 +29,7 @@ class MovieViewHolder private constructor(val binding: ListItemBinding):
             .into(image)
 
         binding.movieName.setOnClickListener {
-            clickListener.onClick(item)
+            clickListener.onClick(item.id)
         }
     }
 
@@ -56,6 +56,9 @@ class NoteDiffCallback :
         return oldItem == newItem
     }
 }
-open class MovieListener(val clickListener: (recipe: Movie) -> Unit) {
-    fun onClick(recipe: Movie) = clickListener(recipe)
+open class MovieListener(val clickListener: (movieId: Int) -> Unit) {
+    fun onClick(movieId: Int) = clickListener(movieId)
 }
+
+
+

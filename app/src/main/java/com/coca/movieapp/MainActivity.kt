@@ -4,10 +4,8 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.coca.movieapp.databinding.ActivityMainBinding
-import com.squareup.picasso.Picasso
 
 class MainActivity : AppCompatActivity() {
     private lateinit var viewModel: MainViewModel
@@ -25,7 +23,7 @@ class MainActivity : AppCompatActivity() {
             if (it != null) {
                 adapter = MovieAdapter(MovieListener {
                     val intent = Intent(this, DetailActivity::class.java)
-                    intent.putExtra(DetailActivity.MOVIE, it)
+                    intent.putExtra(DetailActivity.EXTRA_MOVIE_ID, it)
                     startActivity(intent)
 
                     })

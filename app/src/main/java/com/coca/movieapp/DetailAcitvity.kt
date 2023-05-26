@@ -9,17 +9,15 @@ class DetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         val binding = ActivityDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        val movie: Movie? = intent?.getParcelableExtra(MOVIE)
+        val movie: Int? = intent?.getIntExtra(EXTRA_MOVIE_ID, DEFAULT)
         if (movie != null) {
-            binding.name.text = movie.title
+            //binding.name.text = movie.title
+            val image = binding.poster
+
         }
     }
-
-
-
-
-
     companion object {
-        const val MOVIE = "extra_movie"
+        const val EXTRA_MOVIE_ID = "extra_movie"
+        const val DEFAULT = -1
     }
 }

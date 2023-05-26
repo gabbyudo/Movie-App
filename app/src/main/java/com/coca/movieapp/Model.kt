@@ -7,7 +7,7 @@ data class MovieResponse( val results: List<Movie>?)
 
 @Parcelize
 data class Movie(
-    val id: Int,
+    var id: Int= 0,
     val title: String?,
     val poster_path: String?
 ) : Parcelable
