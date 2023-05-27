@@ -10,11 +10,8 @@ class DetailActivity : AppCompatActivity() {
         val binding = ActivityDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
         val movie: Int? = intent?.getIntExtra(EXTRA_MOVIE_ID, DEFAULT)
-        if (movie != null) {
-            //binding.name.text = movie.title
-            val image = binding.poster
+        if (movie != null) { }
 
-        }
     }
     companion object {
         const val EXTRA_MOVIE_ID = "extra_movie"
