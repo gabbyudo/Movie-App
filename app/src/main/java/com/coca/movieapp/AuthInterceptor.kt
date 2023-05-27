@@ -8,6 +8,8 @@ import okhttp3.Response
 import java.io.IOException
 
 class AuthInterceptor : Interceptor {
+    var API_KEY: String = BuildConfig.API_KEY
+
     @Throws(IOException::class)
     override fun intercept(chain: Chain): Response {
         var request: Request = chain.request()
