@@ -9,7 +9,12 @@ data class MovieResponse( val results: List<Movie>?)
 data class Movie(
     var id: Int,
     val title: String?,
-    val poster_path: String?
+    val poster_path: String?,
+    val overview: String?,
+    val release_date: String?,
+    val vote_average: Double?,
+    val vote_count: Int?
+
 
 
 ) : Parcelable
