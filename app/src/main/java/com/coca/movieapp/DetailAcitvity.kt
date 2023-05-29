@@ -18,6 +18,7 @@ class DetailActivity : AppCompatActivity() {
 
         viewModel = ViewModelProvider(this).get(DetailViewModel::class.java)
         val movie: Int? = intent?.getIntExtra(EXTRA_MOVIE_ID, DEFAULT)
+        if (movie != null){}
 
             viewModel.movie.observe(this, Observer {
                binding.title.text= it.title
@@ -30,7 +31,7 @@ class DetailActivity : AppCompatActivity() {
                     .into(image)
 
             })
-        viewModel.getMovies()
+        viewModel.getMovie()
 
 
     }
