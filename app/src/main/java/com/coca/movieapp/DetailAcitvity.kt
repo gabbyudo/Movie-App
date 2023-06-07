@@ -17,26 +17,30 @@ class DetailActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         viewModel = ViewModelProvider(this).get(DetailViewModel::class.java)
-        val movie: Int? = intent?.getIntExtra(EXTRA_MOVIE_ID, DEFAULT)
-        if (movie != null){}
+        val movieId: Int = intent.getIntExtra(EXTRA_MOVIE_ID, DEFAULT)
+        if (movieId != DEFAULT) {
 
             viewModel.movie.observe(this, Observer {
-               binding.title.text= it.title
+                binding.title.text = it.title
                 binding.description.text = it.overview
                 binding.releaseDate.text = it.release_date
                 val image = binding.poster
 
                 Picasso.with(image.context)
-                    .load("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXWI2scXOnCZyu63frAvg2P_V7cvaHYXKKTKYg0H4kNQ&s")
+                    .load(buildCompletePosterUrl(it.poster_path.orEmpty()))
                     .into(image)
 
             })
-        viewModel.getMovie()
-
+            viewModel.getMovie(movieId)
+        }
 
     }
     companion object {
         const val EXTRA_MOVIE_ID = "extra_movie"
         const val DEFAULT = -1
     }
+    private fun buildCompletePosterUrl(filePath: String): String? {
+        val baseUrl = "https://www.themoviedb.org/t/p/"
+        val posterSize = "w185/"
+        return "$baseUrl$posterSize$filePath"}
 }

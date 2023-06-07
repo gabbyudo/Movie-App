@@ -9,6 +9,7 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
+import retrofit2.http.Path
 
 private const val BASE_URL = "https://api.themoviedb.org/"
 
@@ -36,6 +37,12 @@ private val retrofit = Retrofit.Builder()
 interface MovieApiService {
     @GET("3/movie/popular")
     suspend fun getMovies():  MovieResponse
+
+   /* @GET("promos/{parameter1}/somethingOnething/{parameter2}"
+        fun getMovieId(@Path("parameter1") promoId: String, @Path("parameter2") anotherParameter: String):...
+*/
+    @GET("3/movie/{house}")
+    suspend fun getMovie(@Path("house") movieId:Int): Movie
 }
 object MovieApi {
     val retrofitService : MovieApiService =
