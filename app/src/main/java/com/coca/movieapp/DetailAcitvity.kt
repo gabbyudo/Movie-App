@@ -7,9 +7,9 @@ import androidx.lifecycle.ViewModelProvider
 import com.coca.movieapp.databinding.ActivityDetailBinding
 import com.squareup.picasso.Picasso
 
+
 class DetailActivity : AppCompatActivity() {
     private lateinit var viewModel: DetailViewModel
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,12 +24,18 @@ class DetailActivity : AppCompatActivity() {
                 binding.title.text = it.title
                 binding.description.text = it.overview
                 binding.releaseDate.text = it.release_date
+                binding.ratingNumber.text = it.vote_average.toString()
+
+                if (it.vote_average !=null){
+                    val rating = 10*5/it.vote_average
+                    binding.ratingBar.rating =rating.toFloat()
+                }
+
                 val image = binding.poster
 
                 Picasso.with(image.context)
                     .load(buildCompletePosterUrl(it.poster_path.orEmpty()))
                     .into(image)
-
             })
             viewModel.getMovie(movieId)
         }
